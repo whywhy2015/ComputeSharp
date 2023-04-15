@@ -5,6 +5,7 @@ using ABI.Microsoft.Graphics.Canvas;
 using TerraFX.Interop.DirectX;
 using TerraFX.Interop.Windows;
 using TerraFX.Interop.WinRT;
+using Windows.Graphics.DirectX;
 using Windows.Graphics.Imaging;
 using WinRT;
 
@@ -96,8 +97,8 @@ internal sealed class Win32Application
             dxgiSwapChainDesc1.BufferUsage = DXGI.DXGI_USAGE_RENDER_TARGET_OUTPUT;
             dxgiSwapChainDesc1.Flags = 0;
             dxgiSwapChainDesc1.Format = DXGI_FORMAT.DXGI_FORMAT_B8G8R8A8_UNORM;
-            dxgiSwapChainDesc1.Width = this.screenWidth = 1280;
-            dxgiSwapChainDesc1.Height = this.screenHeight = 720;
+            dxgiSwapChainDesc1.Width = this.screenWidth = 1;
+            dxgiSwapChainDesc1.Height = this.screenHeight = 1;
             dxgiSwapChainDesc1.SampleDesc = new DXGI_SAMPLE_DESC(count: 1, quality: 0);
             dxgiSwapChainDesc1.Scaling = DXGI_SCALING.DXGI_SCALING_STRETCH;
             dxgiSwapChainDesc1.Stereo = 0;
@@ -168,14 +169,13 @@ internal sealed class Win32Application
     {
         if (this.isResizePending)
         {
-            // TODO: handle resizing (can't use the Win2D API as it fails for HWND swapchains)
-            //
-            // this.canvasSwapChain!.ResizeBuffers(
-            //     newWidth: 0,
-            //     newHeight: 0,
-            //     newDpi: 0,
-            //     newFormat: DirectXPixelFormat.Unknown,
-            //     bufferCount: 0);
+            // Resize the swapchain if needed (the size is calculated automatically)
+            this.canvasSwapChain!.ResizeBuffers(
+                newWidth: 0,
+                newHeight: 0,
+                newDpi: 96.0f,
+                newFormat: DirectXPixelFormat.Unknown,
+                bufferCount: 0);
 
             BitmapSize bitmapSize = this.canvasSwapChain!.SizeInPixels;
 
