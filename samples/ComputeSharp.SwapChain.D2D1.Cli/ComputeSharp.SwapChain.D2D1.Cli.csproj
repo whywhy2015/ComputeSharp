@@ -2,12 +2,18 @@
   <PropertyGroup>
     <OutputType Condition="'$(CI_RUNNER_SAMPLES_INTEGRATION_TESTS)' == 'true'">Exe</OutputType>
     <OutputType Condition="'$(CI_RUNNER_SAMPLES_INTEGRATION_TESTS)' != 'true'">WinExe</OutputType>
-    <TargetFramework>net7.0-windows10.0.22621</TargetFramework>
+    <TargetFramework>net8.0-windows10.0.22621</TargetFramework>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <Platforms>x64;ARM64</Platforms>
     <NoWarn>$(NoWarn);IDE0065</NoWarn>
     <AssemblyName>computesharp.d2d1.cli</AssemblyName>
     <ApplicationIcon>..\..\assets\icon.ico</ApplicationIcon>
+
+    <!-- WORKAROUND: missing feed for runtime assemblies -->
+    <RestoreSources>
+      https://api.nuget.org/v3/index.json;
+      https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet8/nuget/v3/index.json;
+    </RestoreSources>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -21,7 +27,7 @@
     <PublishAot>true</PublishAot>
     <UseSystemResourceKeys>true</UseSystemResourceKeys>
     <InvariantGlobalization>true</InvariantGlobalization>
-    <IlcOptimizationPreference>Speed</IlcOptimizationPreference>
+    <OptimizationPreference>Speed</OptimizationPreference>
 
     <!-- Workaround for WinRT.Runtime and System.Linq.Expressions producing trim warnings -->
     <NoWarn>$(NoWarn);IL3053</NoWarn>
