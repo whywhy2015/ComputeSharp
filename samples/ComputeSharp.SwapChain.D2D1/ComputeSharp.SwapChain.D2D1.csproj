@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <!-- Same optional NativeAOT property group as in ComputeSharp.SwapChain.Cli -->
-  <PropertyGroup Condition="'$(COMPUTESHARP_SWAPCHAIN_D2D1_PUBLISH_AOT)' == 'true'">
+  <PropertyGroup>
     <PublishAot>true</PublishAot>
     <UseSystemResourceKeys>true</UseSystemResourceKeys>
     <InvariantGlobalization>true</InvariantGlobalization>
@@ -16,7 +16,7 @@
   </PropertyGroup>
 
   <!-- Also include the .rd.xml file to fix some NativeAOT issues with CsWinRT -->
-  <ItemGroup Condition="'$(COMPUTESHARP_SWAPCHAIN_D2D1_PUBLISH_AOT)' == 'true'">
+  <ItemGroup>
     <RdXmlFile Include="Properties\Default.rd.xml" />
   </ItemGroup>
 
