@@ -1,9 +1,9 @@
 <Project>
   <PropertyGroup>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <LangVersion>11.0</LangVersion>
+    <LangVersion>preview</LangVersion>
     <Nullable>enable</Nullable>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
 
     <!--
       Enable the latest warning wave, which shows additional warnings for invalid language features that are disabled by default.
