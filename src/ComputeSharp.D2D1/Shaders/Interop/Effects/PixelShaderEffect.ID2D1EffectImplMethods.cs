@@ -143,7 +143,11 @@ unsafe partial struct PixelShaderEffect
                     @this->resourceTextureDescriptions,
                     ref @this->resourceTextureManagerBuffer,
                     @this->d2D1DrawInfo,
+#if NET6_0_OR_GREATER
                     &SetResourceTextureForD2D1DrawInfo,
+#else
+                    (delegate*<void*, uint, ID2D1ResourceTexture*, int>)&SetResourceTextureForD2D1DrawInfo,
+#endif
                     ref hresult);
             }
 

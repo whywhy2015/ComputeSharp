@@ -153,7 +153,11 @@ unsafe partial struct ComputeShaderEffect
                     @this->resourceTextureDescriptions,
                     ref @this->resourceTextureManagerBuffer,
                     @this->d2D1ComputeInfo,
+#if NET6_0_OR_GREATER
                     &SetResourceTextureForD2D1ComputeInfo,
+#else
+                    (delegate*<void*, uint, ID2D1ResourceTexture*, int>)&SetResourceTextureForD2D1ComputeInfo,
+#endif
                     ref hresult);
             }
 

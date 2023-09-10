@@ -56,7 +56,11 @@ internal static unsafe class D2D1ShaderEffect
         D2D1ResourceTextureDescription* resourceTextureDescriptions,
         ref ResourceTextureManagerBuffer resourceTextureManagerBuffer,
         void* d2D1Info,
+#if NET6_0_OR_GREATER
         delegate*<void*, uint, ID2D1ResourceTexture*, int> setResourceTexture,
+#else
+        void* setResourceTexture,
+#endif
         ref int hresult)
     {
         ReadOnlySpan<D2D1ResourceTextureDescription> d2D1ResourceTextureDescriptionRange = new(resourceTextureDescriptions, resourceTextureDescriptionCount);
@@ -96,10 +100,17 @@ internal static unsafe class D2D1ShaderEffect
             }
 
             // Set the ID2D1ResourceTexture object to the current index in the ID2D1DrawInfo object in use
+#if NET6_0_OR_GREATER
             hresult = setResourceTexture(
                 d2D1Info,
                 (uint)resourceTextureDescription.Index,
                 d2D1ResourceTexture.Get());
+#else
+            hresult = ((delegate*<void*, uint, ID2D1ResourceTexture*, int>)setResourceTexture)(
+                d2D1Info,
+                (uint)resourceTextureDescription.Index,
+                d2D1ResourceTexture.Get());
+#endif
 
             if (!Windows.SUCCEEDED(hresult))
             {
