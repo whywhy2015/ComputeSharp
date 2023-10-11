@@ -192,21 +192,20 @@ jobs:
         $env:COMPUTESHARP_SWAPCHAIN_CLI_PUBLISH_AOT='true';
         dotnet publish samples\ComputeSharp.SwapChain.Cli\ComputeSharp.SwapChain.Cli.csproj -c Release -r win-${{matrix.platform}} -v n
       
-      # If on x64, also run it (this script will launch it and let it run for 2 seconds, before closing it).
+      # Run the compiled sample (this script will launch it and let it run for 2 seconds, before closing it).
       # Note: for this and all other equivalent tests below, we're only throwing on failures that are not
       # -1073741510 (STATUS_CONTROL_C_EXIT). That error is sometimes thrown when running the test in the CI.
       # We don't want to fail in that case, as it still means the sample has in fact ran with no problems.
-    - if: matrix.platform == 'x64'
-      name: Run ComputeSharp.SwapChain.Cli (speed)
+    - name: Run ComputeSharp.SwapChain.Cli (speed)
       run: >
-        $process = (Start-Process samples\ComputeSharp.SwapChain.Cli\bin\Release\net7.0\win-x64\publish\computesharp.cli.exe -PassThru);
+        $process = (Start-Process samples\ComputeSharp.SwapChain.Cli\bin\Release\net7.0\win-${{matrix.platform}}\publish\computesharp.cli.exe -PassThru);
         sleep -Seconds 2;
         $process.CloseMainWindow() | Out-Null;
         $process.WaitForExit();
         if ($process.ExitCode -lt 0 -and $process.ExitCode -ne -1073741510) { throw $process.ExitCode; }
         return $process.ExitCode;
 
-      # Upload the binary (to track binary size trends)
+      # Upload the binary (to track binary size trends, only on x64)
     - if: matrix.platform == 'x64'
       name: Upload NativeAOT CLI sample (speed)
       uses: actions/upload-artifact@v3
@@ -224,18 +223,17 @@ jobs:
         git clean -fdx;
         dotnet publish samples\ComputeSharp.SwapChain.Cli\ComputeSharp.SwapChain.Cli.csproj -c Release -r win-${{matrix.platform}} -v n
       
-      # Again only on x64, also run the sample and validate it works correctly
-    - if: matrix.platform == 'x64'
-      name: Run ComputeSharp.SwapChain.Cli (size)
+      # Also run the sample and validate it works correctly
+    - name: Run ComputeSharp.SwapChain.Cli (size)
       run: >
-        $process = (Start-Process samples\ComputeSharp.SwapChain.Cli\bin\Release\net7.0\win-x64\publish\computesharp.cli.exe -PassThru);
+        $process = (Start-Process samples\ComputeSharp.SwapChain.Cli\bin\Release\net7.0\win-${{matrix.platform}}\publish\computesharp.cli.exe -PassThru);
         sleep -Seconds 2;
         $process.CloseMainWindow() | Out-Null;
         $process.WaitForExit();
         if ($process.ExitCode -lt 0 -and $process.ExitCode -ne -1073741510) { throw $process.ExitCode; }
         return $process.ExitCode;
 
-      # Upload the binary again (with a different name)
+      # Upload the binary again (with a different name, still only on x64)
     - if: matrix.platform == 'x64'
       name: Upload NativeAOT CLI sample (size)
       uses: actions/upload-artifact@v3
@@ -245,17 +243,15 @@ jobs:
         if-no-files-found: error
 
       # Also publish the Win2D sample on .NET 7 (without NativeAOT, see https://github.com/dotnet/runtime/issues/84908)
-    - if: matrix.platform == 'x64'
-      name: Publish ComputeSharp.SwapChain.D2D1.Cli
+    - name: Publish ComputeSharp.SwapChain.D2D1.Cli
       run: >
         msbuild samples\ComputeSharp.SwapChain.D2D1.Cli\ComputeSharp.SwapChain.D2D1.Cli.csproj /restore -t:publish /p:Configuration=Release
         /p:Platform=${{matrix.platform}} /p:RuntimeIdentifier=win10-${{matrix.platform}} /p:PublishSingleFile=True /p:SelfContained=True /p:PublishTrimmed=True
       
-      # Just like for the DX12 sample, run it on x64 to validate it works correctly
-    - if: matrix.platform == 'x64'
-      name: Run ComputeSharp.SwapChain.D2D1.Cli
+      # Just like for the DX12 sample, run it to validate it works correctly
+    - name: Run ComputeSharp.SwapChain.D2D1.Cli
       run: >
-        $process = (Start-Process samples\ComputeSharp.SwapChain.D2D1.Cli\bin\x64\Release\net7.0-windows10.0.22621\win10-x64\publish\computesharp.d2d1.cli.exe -PassThru);
+        $process = (Start-Process samples\ComputeSharp.SwapChain.D2D1.Cli\bin\x64\Release\net7.0-windows10.0.22621\win10-${{matrix.platform}}\publish\computesharp.d2d1.cli.exe -PassThru);
         sleep -Seconds 2;
         $process.CloseMainWindow() | Out-Null;
         $process.WaitForExit();
@@ -263,8 +259,7 @@ jobs:
         return $process.ExitCode;
       
       # Publish the Win2D sample with NativeAOT (just verifying the build, can't run this yet, see above)
-    - if: matrix.platform == 'x64'
-      name: Publish ComputeSharp.SwapChain.D2D1.Cli with NativeAOT
+    - name: Publish ComputeSharp.SwapChain.D2D1.Cli with NativeAOT
       run: >
         $env:COMPUTESHARP_SWAPCHAIN_D2D1_PUBLISH_AOT='true';
         git clean -fdx;
