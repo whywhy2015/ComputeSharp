@@ -12,7 +12,6 @@
   <ItemGroup>
 
     <!-- ComputeSharp.Core APIs -->
-    <Compile Include="..\ComputeSharp.Core\Attributes\AutoConstructorAttribute.cs" Link="ComputeSharp.Core\Attributes\AutoConstructorAttribute.cs" />
     <Compile Include="..\ComputeSharp.Core\Exceptions\InvalidExecutionContextException.cs" Link="ComputeSharp.Core\Exceptions\InvalidExecutionContextException.cs" />
     <Compile Include="..\ComputeSharp.Core\Intrinsics\Attributes\HlslIntrinsicNameAttribute.cs" Link="ComputeSharp.Core\Intrinsics\Attributes\HlslIntrinsicNameAttribute.cs" />
     <Compile Include="..\ComputeSharp.Core\Intrinsics\Hlsl.Casts.g.cs" Link="ComputeSharp.Core\Intrinsics\Hlsl.Casts.g.cs" />
@@ -87,9 +86,10 @@
     <Compile Include="..\ComputeSharp.D2D1\Shaders\Interop\D2D1InputDescription.cs" Link="ComputeSharp.D2D1\Shaders\Interop\D2D1InputDescription.cs" />
     <Compile Include="..\ComputeSharp.D2D1\Shaders\Interop\D2D1PixelShaderInputType.cs" Link="ComputeSharp.D2D1\Shaders\Interop\D2D1PixelShaderInputType.cs" />
     <Compile Include="..\ComputeSharp.D2D1\Shaders\Interop\D2D1ResourceTextureDescription.cs" Link="ComputeSharp.D2D1\Shaders\Interop\D2D1ResourceTextureDescription.cs" />
+    <Compile Include="..\ComputeSharp.D2D1\Shaders\Translation\ASCII.cs" Link="ComputeSharp.D2D1\Shaders\Translation\ASCII.cs" />
     <Compile Include="..\ComputeSharp.D2D1\Shaders\Translation\D3DCompiler.cs" Link="ComputeSharp.D2D1\Shaders\Translation\D3DCompiler.cs" />
     <Compile Include="..\ComputeSharp.D2D1\Shaders\Translation\D3DCompiler.ID3DInclude.cs" Link="ComputeSharp.D2D1\Shaders\Translation\D3DCompiler.ID3DInclude.cs" />
-    <Compile Include="..\ComputeSharp.D2D1\Shaders\Translation\Headers\d2d1effecthelpers.hlsli.cs" Link="ComputeSharp.D2D1\Shaders\Translation\Headers\d2d1effecthelpers.hlsli.cs" />
+    <Compile Include="..\ComputeSharp.D2D1\Shaders\Translation\Headers\D2D1EffectHelpers.cs" Link="ComputeSharp.D2D1\Shaders\Translation\Headers\D2D1EffectHelpers.cs" />
   </ItemGroup>
 
   <ItemGroup>
