@@ -76,8 +76,8 @@ public sealed partial class D2DPixelShaderDescriptorGenerator : IIncrementalGene
 
                     using ImmutableArrayBuilder<DiagnosticInfo> diagnostics = new();
 
-                    // LoadDispatchData() info
-                    ImmutableArray<FieldInfo> fieldInfos = LoadConstantBuffer.GetInfo(
+                    // Constant buffer info
+                    ImmutableArray<FieldInfo> fieldInfos = ConstantBuffer.GetInfo(
                         diagnostics,
                         typeSymbol,
                         out int constantBufferSizeInBytes);
@@ -219,13 +219,13 @@ public sealed partial class D2DPixelShaderDescriptorGenerator : IIncrementalGene
             declaredMembers.Add(HlslBytecode.WriteCompileOptionsSyntax);
             declaredMembers.Add(HlslSource.WriteSyntax);
             declaredMembers.Add(HlslBytecode.WriteHlslBytecodeSyntax);
-            declaredMembers.Add(CreateFromConstantBuffer.WriteSyntax);
-            declaredMembers.Add(LoadConstantBuffer.WriteSyntax);
+            declaredMembers.Add(ConstantBuffer.WriteCreateFromConstantBufferSyntax);
+            declaredMembers.Add(ConstantBuffer.WriteLoadConstantBufferSyntax);
 
             using ImmutableArrayBuilder<IndentedTextWriter.Callback<D2D1ShaderInfo>> additionalTypes = new();
             using ImmutableHashSetBuilder<string> usingDirectives = new();
 
-            LoadConstantBuffer.RegisterAdditionalTypesSyntax(item, additionalTypes, usingDirectives);
+            ConstantBuffer.RegisterAdditionalTypesSyntax(item, additionalTypes, usingDirectives);
             InputDescriptions.RegisterAdditionalTypeSyntax(item, additionalTypes, usingDirectives);
             InputTypes.RegisterAdditionalTypeSyntax(item, additionalTypes, usingDirectives);
             HlslBytecode.RegisterAdditionalTypeSyntax(item, additionalTypes, usingDirectives);
