@@ -9,6 +9,10 @@
     <Import_RootNamespace>ComputeSharp.SourceGeneration</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\Analyzers\MissingAllowUnsafeBlocksCompilationOptionAnalyzerBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\Analyzers\NotAccessibleFieldTypeInGeneratedShaderDescriptorAttributeTargetAnalyzerBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\Analyzers\NotAccessibleGeneratedShaderDescriptorAttributeTargetAnalyzerBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\DiagnosticDescriptors.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\AttributeDataExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\CompilationExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\DiagnosticsExtensions.cs" />
@@ -18,7 +22,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\IFieldSymbolExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\ITypeSymbolExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\ISymbolExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\StringExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\SymbolInfoExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\SyntaxNodeExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)helpers\DynamicCache{TKey,TValue}.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\EquatableArray{T}.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\HashCode.cs" />
@@ -26,8 +32,23 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ImmutableArrayBuilder{T}.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\IndentedTextWriter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ObjectPool{T}.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\SemanticModelProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\SyntaxFormattingHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mappings\HlslKnownFields.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mappings\HlslKnownKeywords.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mappings\HlslKnownMethods.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mappings\HlslKnownOperators.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mappings\HlslKnownProperties.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mappings\HlslKnownSizes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mappings\HlslKnownTypes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\DiagnosticInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\FieldInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\HierarchyInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\HlslBytecodeInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\TypeInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SyntaxRewriters\HlslSourceRewriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SyntaxRewriters\HlslSourceRewriter.Diagnostics.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SyntaxRewriters\ShaderSourceRewriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SyntaxRewriters\StaticFieldRewriter.cs" />
   </ItemGroup>
 </Project>

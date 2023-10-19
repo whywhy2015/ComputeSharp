@@ -88,9 +88,8 @@
     <AdditionalFiles Include="AnalyzerReleases.Unshipped.md" />
   </ItemGroup>
 
-  <!-- Shared projects with common helpers -->
+  <!-- Shared project with common helpers -->
   <Import Project="..\ComputeSharp.SourceGeneration\ComputeSharp.SourceGeneration.projitems" Label="Shared" />
-  <Import Project="..\ComputeSharp.SourceGeneration.Hlsl\ComputeSharp.SourceGeneration.Hlsl.projitems" Label="Shared" />
 
   <!-- Give access to the code fixers project for the exported diagnostic ids and properties -->
   <ItemGroup>
