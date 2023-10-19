@@ -18,8 +18,14 @@ jobs:
     steps:
     - name: Git checkout
       uses: actions/checkout@v3
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        global-json-file: ./global.json
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v1.1
+      with:
+        vs-prerelease: true
     - name: Build
       run: msbuild /restore -t:build /p:Configuration=${{matrix.configuration}} /p:Platform=${{matrix.platform}} /bl
     - name: Upload MSBuild binary log
@@ -36,8 +42,14 @@ jobs:
     steps:
     - name: Git checkout
       uses: actions/checkout@v3
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        global-json-file: ./global.json
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v1.1
+      with:
+        vs-prerelease: true
     - name: Build ComputeSharp.Core package
       run: dotnet pack src\ComputeSharp.Core\ComputeSharp.Core.csproj -c Release
     - name: Build ComputeSharp package
@@ -75,6 +87,10 @@ jobs:
     steps:
     - name: Git checkout
       uses: actions/checkout@v3
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        global-json-file: ./global.json
 
       # DirectX 12 unit tests
     - name: Run ComputeSharp.Tests
@@ -119,6 +135,10 @@ jobs:
     steps:
     - name: Git checkout
       uses: actions/checkout@v3
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        global-json-file: ./global.json
 
       # D3D12MA tests (main ComputeSharp tests, as well as the device lost ones)
     - name: Run ComputeSharp.Tests
@@ -137,8 +157,14 @@ jobs:
     steps:
     - name: Git checkout
       uses: actions/checkout@v3
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        global-json-file: ./global.json
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v1.1
+      with:
+        vs-prerelease: true
     
       # Build the D2D1 WinAppSDK unit tests
     - name: Build ComputeSharp.D2D1.WinUI.Tests
@@ -158,6 +184,10 @@ jobs:
     steps:
     - name: Git checkout
       uses: actions/checkout@v3
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        global-json-file: ./global.json
     - name: Build and run ComputeSharp.Sample
       run: >
         dotnet build samples\ComputeSharp.Sample\ComputeSharp.Sample.csproj -c Release -r win-x64 --no-self-contained -p:Platform=x64 -v n;
@@ -183,8 +213,14 @@ jobs:
     steps:
     - name: Git checkout
       uses: actions/checkout@v3
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        global-json-file: ./global.json
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v1.1
+      with:
+        vs-prerelease: true
       
       # Publish the NativeAOT CLI sample (optimized for speed)
     - name: Publish ComputeSharp.SwapChain.Cli with NativeAOT (speed)
@@ -280,6 +316,10 @@ jobs:
     steps:
     - name: Git checkout
       uses: actions/checkout@v3
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        global-json-file: ./global.json
     - name: Create local NuGet feed
       run: mkdir artifacts
     - name: Download package artifacts
