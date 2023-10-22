@@ -57,6 +57,9 @@ public static unsafe class Library
     }
 }
 
+/// <summary>
+/// A hello world effect that displays a color gradient.
+/// </summary>
 [D2DEffectDisplayName(nameof(HelloWorld))]
 [D2DEffectDescription("A hello world effect that displays a color gradient.")]
 [D2DEffectCategory("Render")]
