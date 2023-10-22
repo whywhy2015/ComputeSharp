@@ -147,33 +147,20 @@ public abstract unsafe partial class TransferBuffer<T> : IReferenceTrackedObject
     /// <summary>
     /// A <see cref="MemoryManager{T}"/> implementation wrapping a <see cref="TransferBuffer{T}"/> instance.
     /// </summary>
-    private sealed class MemoryManager : MemoryManager<T>
+    /// <param name="buffer">The <see cref="TransferBuffer{T}"/> in use.</param>
+    private sealed class MemoryManager(TransferBuffer<T> buffer) : MemoryManager<T>
     {
-        /// <summary>
-        /// The <see cref="TransferBuffer{T}"/> in use.
-        /// </summary>
-        private readonly TransferBuffer<T> buffer;
-
-        /// <summary>
-        /// Creates a new <see cref="MemoryManager"/> instance for a given buffer.
-        /// </summary>
-        /// <param name="buffer">The <see cref="TransferBuffer{T}"/> in use.</param>
-        public MemoryManager(TransferBuffer<T> buffer)
-        {
-            this.buffer = buffer;
-        }
-
         /// <inheritdoc/>
         public override Memory<T> Memory
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get => CreateMemory(this.buffer.Length);
+            get => CreateMemory(buffer.Length);
         }
 
         /// <inheritdoc/>
         public override Span<T> GetSpan()
         {
-            return this.buffer.Span;
+            return buffer.Span;
         }
 
         /// <inheritdoc/>
@@ -181,9 +168,9 @@ public abstract unsafe partial class TransferBuffer<T> : IReferenceTrackedObject
         {
             default(ArgumentOutOfRangeException).ThrowIfNotZero(elementIndex);
 
-            using ReferenceTracker.Lease _0 = this.buffer.GetReferenceTracker().GetLease();
+            using ReferenceTracker.Lease _0 = buffer.GetReferenceTracker().GetLease();
 
-            return new(this.buffer.mappedData);
+            return new(buffer.mappedData);
         }
 
         /// <inheritdoc/>
