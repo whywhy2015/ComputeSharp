@@ -37,7 +37,7 @@ public sealed class D2DCompileOptionsAttribute : Attribute
     }
 
     /// <summary>
-    /// Gets the number of threads in each thread group for the X axis
+    /// Gets the compile options to use to compile the shader.
     /// </summary>
     public D2D1CompileOptions Options { get; }
 }
