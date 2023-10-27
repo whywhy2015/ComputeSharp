@@ -1243,7 +1243,7 @@ public class DiagnosticsTests
 
             namespace MyFancyApp.Sample;
 
-            [ThreadGroupSize(DispatchAxis.XYZ | DispatchAxis.Y)]
+            [ThreadGroupSize(default)]
             [GeneratedComputeShaderDescriptor]
             public partial struct MyShader : IComputeShader
             {
@@ -1267,7 +1267,7 @@ public class DiagnosticsTests
 
             namespace MyFancyApp.Sample;
 
-            [ThreadGroupSize((DispatchAxis)243712)]
+            [ThreadGroupSize((DefaultThreadGroupSizes)243712)]
             [GeneratedComputeShaderDescriptor]
             public partial struct MyShader : IComputeShader
             {
@@ -1291,7 +1291,7 @@ public class DiagnosticsTests
 
             namespace MyFancyApp.Sample;
 
-            [ThreadGroupSize((DispatchAxis)(-289))]
+            [ThreadGroupSize((DefaultThreadGroupSizes)(-289))]
             [GeneratedComputeShaderDescriptor]
             public partial struct MyShader : IComputeShader
             {
