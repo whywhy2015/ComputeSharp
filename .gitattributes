@@ -1,26 +1,19 @@
-# All file types:
+THIS IS MINE 
+
+
+
+
+
 #   - Treat as text
 #   - Normalize to LF line endings
 *              text=auto eol=lf
 
-# Explicit settings for well known types
-*.appxmanifest text      eol=lf
-*.cmd          text      eol=lf
-*.config       text      eol=lf
-*.cs           text      eol=lf
-*.csproj       text      eol=lf
-*.fs           text      eol=lf
-*.fsproj       text      eol=lf
 *.hlsl         text      eol=lf
 *.json         text      eol=lf
 *.manifest     text      eol=lf
-*.md           text      eol=lf
-*.msbuildproj  text      eol=lf
-*.projitems    text      eol=lf
-*.props        text      eol=lf
-*.ps1          text      eol=lf
-*.resx         text      eol=lf
-*.sh           text      eol=lf
+*.md           text      eol=lf]
+\ NJK
+
 *.shprroj      text      eol=lf
 *.sln          text      eol=lf
 *.slnf         text      eol=lf
